@@ -57,6 +57,15 @@ Run with (and replace X with the location of the dataset. Mind the trailing slas
 outputs some intermediate results, and pcalib.txt containing the calibrated inverse response function to ./photoCalibResult. 
 See code for details.
 
+**NOTE ABOUT THE camera.txt :** The expected calibration file  must have the same convention used for DSO: 
+
+Across all models `fx fy cx cy` denotes the focal length / principal point **relative to the image width / height**, 
+i.e., DSO computes the camera matrix `K` as
+
+		K(0,0) = width * fx
+		K(1,1) = height * fy
+		K(0,2) = width * cx - 0.5
+		K(1,2) = height * cy - 0.5
 
 # vignetteCalib: calibrate vignette.
 Performs photometric calibration from a set of images, showing a flat surface with an ARMarker.
