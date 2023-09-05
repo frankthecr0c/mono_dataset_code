@@ -3,3 +3,6 @@
 CMakeFiles/
 bin/
 *.cmake
+CMakeCache.txt
+Makefile
+

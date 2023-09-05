@@ -50,7 +50,7 @@ UndistorterFOV::UndistorterFOV(const char* configFileName)
 	remapX = nullptr;
 	remapY = nullptr;
 	valid=false;
-
+    printf("\n-------------------------------------UndistorterFOV-------------------------------------\n");
 	// read parameters
 	std::ifstream infile(configFileName);
 	if(!infile.good())
@@ -66,6 +66,7 @@ UndistorterFOV::UndistorterFOV(const char* configFileName)
 	std::getline(infile,l3);
 	std::getline(infile,l4);
 
+    printf("Parameters loaded from %s : \n -> l1: %s\n -> l2: %s\n -> l3: %s\n -> l4: %s\n", configFileName,l1.c_str(),l2.c_str(),l3.c_str(),l4.c_str());
 
 	// l1 & l2
 	if(std::sscanf(l1.c_str(), "%f %f %f %f %f", &inputCalibration[0], &inputCalibration[1], &inputCalibration[2], &inputCalibration[3], &inputCalibration[4]) == 5 &&
@@ -96,6 +97,8 @@ UndistorterFOV::UndistorterFOV(const char* configFileName)
 	else if(l3 == "none")
 	{
 		printf("NO RECTIFICATION\n");
+		out_width = in_width;
+        out_height = in_height;
 		return;
 	}
 	else if(std::sscanf(l3.c_str(), "%f %f %f %f %f", &outputCalibration[0], &outputCalibration[1], &outputCalibration[2], &outputCalibration[3], &outputCalibration[4]) == 5)
@@ -110,7 +113,7 @@ UndistorterFOV::UndistorterFOV(const char* configFileName)
 	}
 
 
-
+    printf("Debug l4.c_str(): %s\n", l4.c_str());
 	// l4
 	if(std::sscanf(l4.c_str(), "%d %d", &out_width, &out_height) == 2)
 	{

@@ -208,7 +208,7 @@ int main( int argc, char** argv )
 	//Eigen::Matrix3f K = reader->getUndistorter()->getK_rect();
 	w_out = reader->getUndistorter()->getOutputDims()[0];
 	h_out = reader->getUndistorter()->getOutputDims()[1];
-
+    printf("Sizes out: w_out, h_out: (%d, %d)!\n", w_out, h_out);
 	aruco::MarkerDetector MDetector;
 
 	std::vector<float*> images;
@@ -217,7 +217,7 @@ int main( int argc, char** argv )
 
 	int wI = reader->getUndistorter()->getInputDims()[0];
 	int hI = reader->getUndistorter()->getInputDims()[1];
-
+    printf("Sizes in: w_out, h_out: (%d, %d)!\n", wI, hI);
 
 	float meanExposure = 0;
 	for(int i=0;i<reader->getNumImages();i+=imageSkip)
